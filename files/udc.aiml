@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+    
+  <category>
+    <pattern>*</pattern>
+    <template>I have no answer for that. Type "find my career" to begin!</template>
+  </category>
+  
+  <category>
+      <pattern>HELLO</pattern>
+      <template>Hello there, what is your name</template>
+  </category>
+  
+  <category>
+      <pattern>HI</pattern>
+      <template><srai>HELLO</srai></template>
+  </category>
+  
+  <category>
+      <pattern>MY NAME IS *</pattern>
+      <that>Hello there, what is your name</that>
+      <template>
+          Hi <set name="name"><star/></set>! Would you like to find your career today?
+          <button>
+              <text>Yes!</text>
+              <postback>COMPSCI</postback>
+          </button>
+          <button>
+              <text>No thanks.</text>
+              <postback>NO</postback>
+          </button>
+      </template>
+  </category>
+  
+  <category>
+      <pattern>COMPSCI</pattern>
+      <template>
+          Are you studying computer science or a related discipline from WGU?
+          <button>
+              <text>Yes</text>
+              <postback>FIND MY CAREER</postback>
+          </button>
+          <button>
+              <text>No</text>
+              <postback>NO</postback>
+          </button>
+      </template>
+  </category>
+  
+  <category>
+      <pattern>NO</pattern>
+      <template>Ok bye :)</template>
+  </category>
+  
+  <category>
+      <pattern>*</pattern>
+      <that>Hello there, what is your name</that>
+      <template><srai>My name is <star /></srai></template>
+  </category>
+  
+  <category>
+      <pattern>FIND MY CAREER</pattern>
+      <template>
+          <think><set name="topic">career</set></think>
+          Let's find your career!<delay>1</delay>What are you currently studying?
+          <button>
+              <text>Computer Science</text>
+              <postback>COMPUTER SCIENCE</postback>
+          </button>
+          <button>
+              <text>Software Development</text>
+              <postback>SOFTWARE DEVELOPMENT</postback>
+          </button>
+      </template>
+  </category>
+  
+  <topic name="career">
+      
+      <category>
+          <pattern>COMPUTER SCIENCE</pattern>
+          <template>
+              Select one of the following fields which interests you!<delay>1</delay>
+              <carousel>
+                 <card>
+                     <title>Machine Learning/AI</title>
+                     <subtitle>Make robots!</subtitle>
+                     <image>https://mediaproxy.salon.com/width/1200/https://media.salon.com/2021/04/artificial-intelligence-robot-0427211.jpg</image>
+                     <button>
+                         <text>That's awesome!</text>
+                         <postback>AI</postback>
+                     </button>
+                 </card>
+                 <card>
+                     <title>The Cloud</title>
+                     <subtitle>Step into the future with cloud computing.</subtitle>
+                     <image>https://www.nutanix.com/content/dam/nutanix/images/img-cloud-computing.jpg</image>
+                     <button>
+                         <text>That's awesome!</text>
+                         <postback>CLOUD</postback>
+                     </button>
+                 </card>
+                 <card>
+                     <title>Problem solving</title>
+                     <subtitle>Do you enjoy solving complex problems?</subtitle>
+                     <image>https://woz-u.com/wp-content/uploads/2020/02/What-Do-Software-Engineers-Do-WOZ-1-min.png</image>
+                     <button>
+                         <text>That's awesome!</text>
+                         <postback>ENGINEERING</postback>
+                     </button>
+                 </card>
+              </carousel>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>SOFTWARE DEVELOPMENT</pattern>
+          <template>
+              Select one of the following fields which interests you!<delay>1</delay>
+              <carousel>
+                  <card>
+                      <title>Web Design</title>
+                      <subtitle>Build and deploy websites on the internet.</subtitle>
+                      <image>https://www.namasteui.com/wp-content/uploads/2018/08/front-end-web-development-768x427.jpg</image>
+                      <button>
+                          <text>That's awesome!</text>
+                          <postback>FRONT END</postback>
+                      </button>
+                  </card>
+                  <card>
+                      <title>iOS Development</title>
+                      <subtitle>Build apps for iPhone and iPad.</subtitle>
+                      <image>https://dz2cdn1.dzone.com/storage/temp/2002314-5-iphone-app-development-things-you-should-know-ab.jpg</image>
+                      <button>
+                          <text>That's awesome!<think><set name="career">frontEnd</set></think></text>
+                          <postback>IOS</postback>
+                      </button>
+                  </card>
+              </carousel>      
+          </template>
+      </category>
+      
+      <category>
+          <pattern>learn more about iOS design</pattern>
+          <template>Hello</template>
+      </category>
+      
+      <category>
+          <pattern>CLOUD</pattern>
+          <template>
+              Hmm...<image>http://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/thinking-face.png</image> <delay>2</delay> I think Cloud Engineering is the choice for you! Here's some info to get you started!
+              <link>
+                  <text>Cloud engineering</text>
+                  <url>https://searchcloudcomputing.techtarget.com/definition/cloud-engineer</url>
+              </link>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>ENGINEERING</pattern>
+          <template>
+             Hmm...<image>http://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/thinking-face.png</image> <delay>2</delay> I think Data Science is the choice for you! Here's some info to get you started!
+              <link>
+                  <text>Data Science</text>
+                  <url>https://www.dataquest.io/blog/how-to-become-a-data-scientist/</url>
+              </link>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>AI</pattern>
+          <template>
+              Hmm...<image>http://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/thinking-face.png</image> <delay>2</delay> I think Robotics Engineering is the choice for you! Here's some info to get you started!
+              <link>
+                  <text>Robotics engineering</text>
+                  <url>https://www.northeastern.edu/graduate/blog/how-to-become-a-robotics-engineer/</url>
+              </link>
+          </template>
+      </category>
+
+      <category>
+          <pattern>FRONT END</pattern>
+          <template>
+              Hmm...<image>http://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/thinking-face.png</image> <delay>2</delay> I think Web Developer is the choice for you! Here's some info to get you started!
+              <link>
+                  <text>Web Development</text>
+                  <url>https://www.w3schools.com/whatis/</url>
+              </link>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>IOS</pattern>
+          <template>
+              Hmm...<image>http://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/thinking-face.png</image> <delay>2</delay> I think Mobile Development would fit you well! Here's some info to get you started!
+              <link>
+                  <text>Mobile Development</text>
+                  <url>https://simpleprogrammer.com/what-is-mobile-development/</url>
+              </link>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>*</pattern>
+          <template>Hmm, im not sure what you mean. Would you like to return to the careers page?</template>
+      </category>
+      
+      <category>
+          <pattern>yes</pattern>
+          <that>Would you like to return to the careers page</that>
+          <template><srai>FIND MY CAREER</srai></template>
+      </category>
+  </topic>
+  
+  
+</aiml>
